@@ -8,7 +8,7 @@ function printAllUsers(users) {
 
 
 
-////////
+//////////
 var users = [{
     name: 'harkirat',
     age: 21,
