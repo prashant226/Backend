@@ -1,7 +1,7 @@
 function sumAll(startindex, endingindex) {
     var sum = 0;
     for (
-        var i = startindex; i < endingindex; i++) {
+        var i = startindex; i <= endingindex; i++) {
         sum += i;
 
     }
