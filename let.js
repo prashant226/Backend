@@ -4,8 +4,9 @@ if (true) {
 }
 
 function fun() {
-    console.log(y);
 
     let y = 9;
+    console.log(y);
+
 }
 fun();
