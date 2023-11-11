@@ -7,7 +7,7 @@ function fun() {
 }
 
 function gun() {
-    console.log(subject);
+    console.log(subject, typeof subject);
     var subject = 'hindi';
     console.log(teacher);
 }
