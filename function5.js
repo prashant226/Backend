@@ -13,4 +13,4 @@ gun(function() {
     console.log("new function passed");
 });
 
-gun(fun);
+gun();
