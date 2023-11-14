@@ -10,7 +10,7 @@ function gun(fn) {
 
 }
 gun(function() {
-    console.log("new function passed");
+    console.log("new PROPER function passed");
 });
 
 gun();
