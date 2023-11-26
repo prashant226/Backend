@@ -16,4 +16,6 @@ let x = mapper(arr, function cuber(v, i) {
     return v * v * v;
 
 });
+
+
 console.log(x, arr);
