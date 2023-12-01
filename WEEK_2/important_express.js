@@ -15,7 +15,6 @@ const port = 3000;
 var bodyParser = require('body-parser')
 let numberOfRequests = 0;
 
-app.use(bodyParser.json()) /**the above calls body middleware */
 
 function calculateSum(counter) {
     var sum = 0;
@@ -27,13 +26,13 @@ function calculateSum(counter) {
 
 //a way to register a middleware
 
-function middleWare(req, res, next) {
-    // numberOfRequests = numberOfRequests + 1;
-    // console.log("from inside middleware " + req.headers.counter);
-    // res.send("error is present");
-    next();
-}
-app.use(middleWare);
+// function middleWare(req, res, next) {
+//     // numberOfRequests = numberOfRequests + 1;
+//     // console.log("from inside middleware " + req.headers.counter);
+//     // res.send("error is present");
+//     next();
+// }
+// app.use(middleWare);
 
 
 /**express code in beginning  */
@@ -56,6 +55,7 @@ function handleFirstRequest(req, res) {
     res.send(answer);
 }
 
+app.use(bodyParser.json()) /**the above calls body middleware */
 
 function CreateUser(req, res) {
     res.send("hello world!");
