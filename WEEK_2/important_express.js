@@ -12,7 +12,10 @@
 const express = require('express')
 const app = express()
 const port = 3000;
+var bodyParser = require('body-parser')
+let numberOfRequests = 0;
 
+app.use(bodyParser.json()) /**the above calls body middleware */
 
 function calculateSum(counter) {
     var sum = 0;
@@ -22,13 +25,15 @@ function calculateSum(counter) {
     return sum;
 }
 
-app.use(middleWare); //a way to register a middleware
+//a way to register a middleware
 
 function middleWare(req, res, next) {
-    console.log("from inside middleware " + req.headers.counter);
-    res.send("error is present");
+    // numberOfRequests = numberOfRequests + 1;
+    // console.log("from inside middleware " + req.headers.counter);
+    // res.send("error is present");
+    next();
 }
-
+app.use(middleWare);
 
 
 /**express code in beginning  */
@@ -40,7 +45,10 @@ function middleWare(req, res, next) {
 
 function handleFirstRequest(req, res) {
     // var counter = req.query.counter;
-    console.log(req.headers);
+    console.log(req.body);
+    /**
+     * var counter= req.headers.counter this means we are sending counter value in the postman  
+     */
     var counter = req.headers.counter;
     var calculatedSum = calculateSum(counter);
     // console.log(calculatedSum);
