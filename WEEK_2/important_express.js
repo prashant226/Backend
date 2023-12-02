@@ -58,7 +58,7 @@ function handleFirstRequest(req, res) {
      * var counter= req.headers.counter this means we are sending counter value in the postman  
      */
 
-    var counter = req.body.counter;
+    var counter = req.query.counter;
     // console.log(calculatedSum);
     // if (counter < 100000) {
     var calculatedSum = calculateSum(counter);
