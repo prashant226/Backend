@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- <input lang="en"> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ToDo app</title>
+</head>
+<script>
+    function parsedResponse(data) {
+        console.log(data);
+    }
+
+    function callback(resp) {
+        resp.json().then(parsedResponse);
+    }
+
+    function onPress() {
+        fetch("https://localhost:3000/todos", {
+            method: "GET"
+        }).then(callback)
+    }
+</script>
+<input> Todo title :
+<input type="text" id="title"></input>
+Todo description :
+<input type="text" id="title"></input>
+<button onclick="onPress()">send ToDo</button>
+</body>
+
+</html>
