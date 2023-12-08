@@ -16,12 +16,17 @@
     }
 
     function onPress() {
+        /** DOM MANIPULATIONS*/
+        var title = document.getElementById("title").value;
+        var description = document.getElementsById("description").value;
+        console.log(title);
+        // mainly here fetching the data from the backend and send it to the frontend
         fetch("https://localhost:3000/todos", {
             // method: "GET"
             method: "POST",
             body: JSON.stringify({
-                title: "gym",
-                description: "go to gym at 7"
+                title: title,
+                description: description
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -29,10 +34,11 @@
         }).then(callback)
     }
 </script>
-<input> Todo title :
+Todo title :
 <input type="text" id="title"></input>
-Todo description :
-<input type="text" id="title"></input>
+<br><br> Todo description :
+<input type="text" id="description"></input>
+<br><br>
 <button onclick="onPress()">send ToDo</button>
 </body>
 
