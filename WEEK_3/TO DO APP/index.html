@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- <input lang="en"> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ToDo app</title>
+</head>
+<script>
+    function todosCallback(data) {
+        // console.log(data);
+        var parentElement = document.getElementById("mainArea");
+        // parentElement.innerHTML = JSON.stringify(data);
+        for (var i = 0; i < data.length; i++) {
+            var childElement = document.createElement("div");
+            // childElement.innerHTML = data[i].title;
+            // parentElement.appendChild(childElement);
+            var grandChildElement1 = document.createElement("span");
+            grandChildElement1.innerHTML = data[i].title
+
+            var grandChildElement2 = document.createElement("span");
+            grandChildElement2.innerHTML = data[i].description
+
+
+            var grandChildElement3 = document.createElement("button");
+            grandChildElement3.innerHTML = "Delete"
+
+
+            // parentElement.appendChild(childElement);
+            childElement.appendChild(grandChildElement1)
+            childElement.appendChild(grandChildElement2)
+            childElement.appendChild(grandChildElement3)
+
+            parentElement.appendChild(childElement);
+
+
+        }
+
+    }
+
+    function getDataCallback(resp) {
+        resp.json().then(todosCallback);
+    }
+    // mainly here fetching the data from the backend and send it to the frontend
+    function getData() {
+        fetch("https://localhost:3000/todos", {
+            // method: "GET"
+            method: "GET",
+            /**JSON Is a Global Variable */
+            body: JSON.stringify({
+                title: title,
+                description: description
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(getDataCallback)
+
+    }
+    getData();
+
+    function parsedResponse(data) {
+        console.log(data);
+        var parentElement = document.getElementById("mainArea");
+        // var childElement = document.createElement("div")
+        var childElement = document.createElement("div");
+        // childElement.innerHTML = data[i].title;
+        // parentElement.appendChild(childElement);
+        var grandChildElement1 = document.createElement("span");
+        grandChildElement1.innerHTML = data.title
+
+        var grandChildElement2 = document.createElement("span");
+        grandChildElement2.innerHTML = data.description
+
+
+        var grandChildElement3 = document.createElement("button");
+        grandChildElement3.innerHTML = "Delete"
+
+
+        // parentElement.appendChild(childElement);
+        childElement.appendChild(grandChildElement1)
+        childElement.appendChild(grandChildElement2)
+        childElement.appendChild(grandChildElement3)
+
+        parentElement.appendChild(childElement);
+
+
+    }
+
+    function callback(resp) {
+        resp.json().then(parsedResponse);
+    }
+
+    function onPress() {
+        /** DOM MANIPULATIONS*/
+        var title = document.getElementById("title").value;
+        var description = document.getElementsById("description").value;
+
+        fetch("https://localhost:3000/todos", {
+            // method: "GET"
+            method: "POST",
+            /**JSON Is a Global Variable */
+            body: JSON.stringify({
+                title: title,
+                description: description
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(callback)
+
+    }
+</script>
+Todo title :
+<input type="text" id="title"></input>
+<br><br> Todo description :
+<input type="text" id="description"></input>
+<br><br>
+<button onclick="onPress()">send ToDo</button>
+<div id="mainArea">
+
+</div>
+</body>
+
+</html>
